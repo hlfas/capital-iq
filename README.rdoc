@@ -1,6 +1,6 @@
 = capital-iq
 
-Ruby API wrapper to Capital IQ API.
+Ruby API wrapper to Capital IQ API. TLSv1
 
 == Compatibility Warning
 
