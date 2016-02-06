@@ -24,7 +24,8 @@ module CapitalIQ
 
       # analyze response
       response = ApiResponse.new(response_data)
-      raise ApiError.new(response_data) if response.has_errors?
+      # Do not raise any error
+      # raise ApiError.new(response_data) if response.has_errors?
       to_cache(request_body, response_data)
       response
     end
