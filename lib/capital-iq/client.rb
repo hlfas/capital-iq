@@ -18,8 +18,10 @@ module CapitalIQ
       request_body = {inputRequests: request_array}.to_json
 
       # send request
+      # If you ever get an error such as SSL_connect returned=1 errno=0 state=error: certificate verify failed
+      # A temporary workaround is to set 'verify' to 'false'
       response_data = from_cache(request_body) || self.class.post(
-          ENDPOINT, body: request_body, basic_auth: @auth, ssl_version: :TLSv1_2, verify: false, :headers => { 'Content-Type' => 'application/json' }
+          ENDPOINT, body: request_body, basic_auth: @auth, ssl_version: :TLSv1_2, verify: true, :headers => { 'Content-Type' => 'application/json' }
       ).parsed_response
 
       # analyze response
