@@ -2,7 +2,7 @@ module CapitalIQ
   class Client
     attr_reader :cache
 
-    ENDPOINT = 'https://sdk.gds.standardandpoors.com/gdssdk/rest/v2/clientservice.json'
+    ENDPOINT = 'https://sdk.gds.standardandpoors.com/gdssdk/rest/v3/clientservice.json'
     include HTTParty
     format :json
 
@@ -15,11 +15,11 @@ module CapitalIQ
       # build request
       requests = [requests] unless requests.class == Array
       request_array = requests.collect { |r| r.to_hash }
-      request_body = {inputRequests: {inputRequests: request_array}.to_json}
+      request_body = {inputRequests: request_array}.to_json
 
       # send request
       response_data = from_cache(request_body) || self.class.post(
-          ENDPOINT, body: request_body, basic_auth: @auth, ssl_version: :TLSv1, verify: false
+          ENDPOINT, body: request_body, basic_auth: @auth, ssl_version: :TLSv1_2, verify: false, :headers => { 'Content-Type' => 'application/json' }
       ).parsed_response
 
       # analyze response
