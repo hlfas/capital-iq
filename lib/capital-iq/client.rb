@@ -2,7 +2,7 @@ module CapitalIQ
   class Client
     attr_reader :cache
 
-    ENDPOINT = 'https://sdk.gds.standardandpoors.com/gdssdk/rest/v3/clientservice.json'
+    ENDPOINT = 'https://api-ciq.marketintelligence.spglobal.com/gdsapi/rest/v3/clientservice.json'
     include HTTParty
     format :json
 
